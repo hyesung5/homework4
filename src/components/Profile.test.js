@@ -37,7 +37,22 @@ describe('Profile', () => {
 
   it ('should handle display link with username & birthday has been entered', () => {
     //TODO
-    expect(true).toBe(false);
+
+    const username= 'ta';
+    const birthday= '1993-10-10';
+    const component = shallow(<Profile/>);
+    
+    const wrapper1 = component.find("#username-input");
+    const wrapper2= component.find("#birthday-input");
+    //{target: {value: }} mocks the (event) passed to the handler
+    wrapper1.simulate('change', {target: {value: username,
+                                         name: wrapper1.props().name}});
+    wrapper2.simulate('change', {target: {value: birthday,
+                                          name: wrapper2.props().name}});
+  
+    expect(component.find('#fortune-id').first().text()).toEqual('show my fortune');
+    
   });
+
 
 });
